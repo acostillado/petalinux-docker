@@ -14,6 +14,7 @@ RUN apt-get update &&  DEBIAN_FRONTEND=noninteractive apt-get install -y -q \
   sudo \
   tofrodos \
   iproute2 \
+  iputils-ping \
   gawk \
   net-tools \
   expect \
@@ -95,7 +96,9 @@ USER vivado
 ENV HOME /home/vivado
 ENV LANG en_US.UTF-8
 RUN mkdir /home/vivado/project
-WORKDIR /home/vivado/project
+WORKDIR /home/vivado
 
 #add vivado tools to path
 RUN echo "source /opt/Xilinx/petalinux/settings.sh" >> /home/vivado/.bashrc
+
+RUN wget https://github.com/Digilent/Zybo-Z7/releases/download/20%2FPetalinux%2F2022.1-1/Zybo-Z7-20-Petalinux-2022-1.bsp
